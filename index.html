@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -6,57 +7,64 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>YummyGoodFood Welcomes You</h1>  <p class="short-desc">
-    YummyGoodFood is your go-to destination for fresh, delicious, and fast-delivered meals. We offer a wide range of mouth-watering dishes prepared hygienically and delivered hot to your doorstep.
-  </p>  <div class="home-buttons">
+  <h1>YummyGoodFood Welcomes You</h1>
+
+  <p class="short-desc">
+    YummyGoodFood delivers fresh and tasty meals fast to your home. Try our famous biryanis and dosas today!
+  </p>
+
+  <div class="home-buttons">
     <button class="button" onclick="showMenu()">Menu</button>
     <button class="button" onclick="showContact()">Contact</button>
-  </div>  <div class="menu" id="menu">
+  </div>
+
+  <div id="menu" style="display: none;">
     <h2>Menu</h2>
     <div class="menu-item">
       <label>Masala Dosa - ₹50</label>
-      <input type="number" min="0" value="0" onchange="updateBill()" data-price="50">
+      <input type="number" value="0" min="0" data-price="50">
     </div>
     <div class="menu-item">
       <label>Chicken Biryani (Full) - ₹130</label>
-      <input type="number" min="0" value="0" onchange="updateBill()" data-price="130">
+      <input type="number" value="0" min="0" data-price="130">
     </div>
     <div class="menu-item">
       <label>Chicken Biryani (Half) - ₹110</label>
-      <input type="number" min="0" value="0" onchange="updateBill()" data-price="110">
+      <input type="number" value="0" min="0" data-price="110">
     </div>
     <div class="menu-item">
       <label>Chicken Chilli - ₹60</label>
-      <input type="number" min="0" value="0" onchange="updateBill()" data-price="60">
+      <input type="number" value="0" min="0" data-price="60">
     </div>
     <div class="menu-item">
       <label>Beef Biryani - ₹120</label>
-      <input type="number" min="0" value="0" onchange="updateBill()" data-price="120">
+      <input type="number" value="0" min="0" data-price="120">
     </div>
     <div class="menu-item">
       <label>Beef Roast - ₹90</label>
-      <input type="number" min="0" value="0" onchange="updateBill()" data-price="90">
+      <input type="number" value="0" min="0" data-price="90">
     </div>
     <div class="menu-item">
       <label>Chicken 65 - ₹90</label>
-      <input type="number" min="0" value="0" onchange="updateBill()" data-price="90">
+      <input type="number" value="0" min="0" data-price="90">
     </div>
     <button class="button" onclick="calculateTotal()">Place Order</button>
-  </div>  <div class="bill" id="bill">
+  </div>
+
+  <div id="bill" style="display: none;">
     <h2>Order Placed</h2>
     <div id="orderDetails"></div>
-    <p>Total Bill: ₹<span id="totalAmount">0</span></p>
+    <p>Total: ₹<span id="totalAmount">0</span></p>
     <button class="button">Pay Now</button>
-  </div>  <div class="section about">
-    <h2>About Us</h2>
-    <p>
-      At YummyGoodFood, we believe in delivering joy through food. Our chefs use the finest ingredients and hygienic practices to prepare dishes that satisfy every craving. Whether it's a quick bite or a hearty meal, we ensure top quality and timely service.
-    </p>
-  </div>  <div class="section contact" id="contact">
+  </div>
+
+  <div id="contact" style="display: none;">
     <h2>Contact</h2>
     <p>Name: Sravan</p>
-    <p>Phone: 67896432</p>
-  </div>  <script>
+    <p>Mobile: 67896432</p>
+  </div>
+
+  <script>
     function showMenu() {
       document.getElementById('menu').style.display = 'block';
       document.getElementById('contact').style.display = 'none';
@@ -64,40 +72,29 @@
     }
 
     function showContact() {
-      document.getElementById('contact').style.display = 'block';
       document.getElementById('menu').style.display = 'none';
+      document.getElementById('contact').style.display = 'block';
       document.getElementById('bill').style.display = 'none';
     }
 
-    function updateBill() {
-      const inputs = document.querySelectorAll('.menu input');
-      let bill = 0;
-      inputs.forEach(input => {
-        const qty = parseInt(input.value);
-        const price = parseInt(input.getAttribute('data-price'));
-        if (!isNaN(qty)) {
-          bill += qty * price;
-        }
-      });
-      document.getElementById('totalAmount').innerText = bill;
-    }
-
     function calculateTotal() {
-      const inputs = document.querySelectorAll('.menu input');
-      let orderList = '';
+      const inputs = document.querySelectorAll('#menu input');
       let total = 0;
+      let summary = '';
       inputs.forEach(input => {
         const qty = parseInt(input.value);
-        const price = parseInt(input.getAttribute('data-price'));
-        const label = input.previousElementSibling.innerText;
+        const price = parseInt(input.dataset.price);
         if (qty > 0) {
-          orderList += ${label} x ${qty} = ₹${qty * price}<br>;
-          total += qty * price;
+          const item = input.previousElementSibling.textContent;
+          const itemTotal = qty * price;
+          summary += <p>${item} × ${qty} = ₹${itemTotal}</p>;
+          total += itemTotal;
         }
       });
-      document.getElementById('orderDetails').innerHTML = orderList;
-      document.getElementById('totalAmount').innerText = total;
+      document.getElementById('orderDetails').innerHTML = summary;
+      document.getElementById('totalAmount').textContent = total;
       document.getElementById('bill').style.display = 'block';
     }
-  </script></body>
+  </script>
+</body>
 </html>
