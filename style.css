@@ -1,22 +1,22 @@
 body {
+  animation: bgColorChange 20s infinite alternate;
   font-family: Arial, sans-serif;
   text-align: center;
   padding: 20px;
-  background: linear-gradient(45deg, #f0f8ff, #e6e6fa, #f5f5dc);
-  background-size: 600% 600%;
-  animation: floatBg 20s ease infinite;
 }
 
-@keyframes floatBg {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+@keyframes bgColorChange {
+  0% { background-color: #ffe4e1; }
+  25% { background-color: #e6e6fa; }
+  50% { background-color: #f0fff0; }
+  75% { background-color: #f5f5dc; }
+  100% { background-color: #ffe4b5; }
 }
 
 h1 {
   font-size: 36px;
   font-weight: bold;
-  animation: colorCycle 6s infinite;
+  animation: colorCycle 5s infinite;
 }
 
 @keyframes colorCycle {
@@ -29,27 +29,30 @@ h1 {
 }
 
 .button {
-  padding: 10px 25px;
-  margin: 10px;
+  padding: 15px 30px;
   background-color: purple;
   color: white;
-  font-size: 16px;
+  font-size: 18px;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
+  margin-top: 20px;
 }
 
-.menu-item {
+.menu,
+.bill,
+.about,
+.contact {
+  display: none;
+  margin-top: 20px;
+}
+
+.menu button {
   margin: 10px;
+  padding: 10px;
+  font-size: 16px;
 }
 
-.menu-item label {
-  display: inline-block;
-  width: 250px;
-  text-align: right;
-  margin-right: 10px;
-}
-
-.menu-item input {
-  width: 60px;
+.section {
+  margin-top: 40px;
 }
