@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YummyGoodFood</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>YummyGoodFood Welcomes You</h1>
+
+  <button class="button" onclick="showMenu()">Order</button>
+
+  <div class="menu" id="menu">
+    <h2>Menu</h2>
+    <button onclick="placeOrder('Masala Dosa - ₹50')">Masala Dosa - ₹50</button>
+    <button onclick="placeOrder('Chicken Biryani (Full) - ₹130')">Chicken Biryani (Full) - ₹130</button>
+    <button onclick="placeOrder('Chicken Biryani (Half) - ₹110')">Chicken Biryani (Half) - ₹110</button>
+    <button onclick="placeOrder('Chicken Chilli - ₹60')">Chicken Chilli - ₹60</button>
+    <button onclick="placeOrder('Beef Biryani - ₹120')">Beef Biryani - ₹120</button>
+    <button onclick="placeOrder('Beef Roast - ₹90')">Beef Roast - ₹90</button>
+    <button onclick="placeOrder('Chicken 65 - ₹90')">Chicken 65 - ₹90</button>
+  </div>
+
+  <div class="bill" id="bill">
+    <h2>Order Placed</h2>
+    <p id="orderDetails"></p>
+    <p>Bill is ready. Please proceed to payment.</p>
+  </div>
+
+  <div class="section about">
+    <h2>About</h2>
+    <p>YummyGoodFood offers delicious and hygienic meals prepared by expert chefs. Fast delivery and quality assurance is our priority. Whether you're craving traditional Indian food or spicy non-veg dishes, we serve it hot and fresh to your doorstep.</p>
+  </div>
+
+  <div class="section contact">
+    <h2>Contact</h2>
+    <p>Name: Sravan</p>
+    <p>Phone: +91-9876543210</p>
+  </div>
+
+  <script>
+    function showMenu() {
+      document.getElementById('menu').style.display = 'block';
+    }
+
+    function placeOrder(item) {
+      document.getElementById('orderDetails').innerText = item;
+      document.getElementById('bill').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
